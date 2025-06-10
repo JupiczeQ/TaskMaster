@@ -97,8 +97,7 @@ public class Dashboard extends JFrame{
 
         statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
         statsPanel.setBackground(Color.WHITE);
-        String title = isAdmin ? "Statystyki (wszystkie zadania)" : "Statystyki";
-        TitledBorder titledBorder = BorderFactory.createTitledBorder(title);
+        TitledBorder titledBorder = BorderFactory.createTitledBorder("Statystyki");
         titledBorder.setTitleFont(titleFont);
         statsPanel.setBorder(titledBorder);
 
