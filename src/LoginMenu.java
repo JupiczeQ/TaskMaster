@@ -68,24 +68,19 @@ public class LoginMenu extends JFrame{
                     return;
                 }
 
-                if (loginInput.trim().equals(LOGIN) && passwordInput.equals(PASSWORD)) {
-                    MessageUtils.showSuccess(LoginMenu.this,"Zalogowano jako admin");
-                    WindowManager.switchToDashboard(LoginMenu.this, 1);
-                    return;
-                }
                 try {
-                    int userID = UserDAO.authenticateUser(loginInput.trim(),passwordInput.trim());
-                    if (userID!=-1){
-                        MessageUtils.showSuccess(LoginMenu.this,"Zalogowano jako " + loginField.getText().trim());
+                    int userID = UserDAO.authenticateUser(loginInput.trim(), passwordInput.trim());
+                    if (userID != -1) {
+                        String welcomeMessage = userID == 1 ? "Zalogowano jako admin" : "Zalogowano jako " + loginInput.trim();
+                        MessageUtils.showSuccess(LoginMenu.this, welcomeMessage);
                         WindowManager.switchToDashboard(LoginMenu.this, userID);
-                    }else{
-                        MessageUtils.showError(LoginMenu.this,"Nieprawidłowy login lub hasło");
-                        //loginField.setText("");
+                    } else {
+                        MessageUtils.showError(LoginMenu.this, "Nieprawidłowy login lub hasło");
                         passwordField.setText("");
                         loginField.requestFocus();
                     }
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    MessageUtils.showDatabaseError(LoginMenu.this, e);
                 }
             }
         });

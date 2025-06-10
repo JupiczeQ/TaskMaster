@@ -1,5 +1,6 @@
 package Database;
 
+import Utils.PasswordUtils;
 import java.sql.*;
 
 public class UserDAO {
@@ -41,13 +42,18 @@ public class UserDAO {
     }
 
     public static boolean registerUser(String username, String password) throws SQLException {
-        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        String sql = "INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            String[] hashAndSalt = PasswordUtils.hashPasswordWithSalt(password);
+            String hashedPassword = hashAndSalt[0];
+            String salt = hashAndSalt[1];
+
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
+            pstmt.setString(2, hashedPassword);
+            pstmt.setString(3, salt);
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
@@ -55,20 +61,23 @@ public class UserDAO {
     }
 
     public static int authenticateUser(String username, String password) throws SQLException {
-        String sql = "SELECT id FROM users WHERE username = ? AND password = ?";
+        String sql = "SELECT id, password_hash, salt FROM users WHERE username = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
-
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("id"); // Zwróć ID użytkownika
+                String storedHash = rs.getString("password_hash");
+                String salt = rs.getString("salt");
+
+                if (PasswordUtils.verifyPassword(password, storedHash, salt)) {
+                    return rs.getInt("id");
+                }
             }
-            return -1; // Nieudane logowanie
+            return -1;
         }
     }
 }
