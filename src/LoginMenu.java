@@ -28,9 +28,6 @@ public class LoginMenu extends JFrame{
 
     private ImageIcon iconTM = new ImageIcon(getClass().getResource("Figures/TaskMaster.png"));
 
-    private static final String LOGIN = "admin";
-    private static final String PASSWORD = "admin";
-
     public LoginMenu() {
         super("Menu");
         this.setContentPane(mainFrame);
