@@ -39,7 +39,6 @@ public class comboBoxStyler {
                 Component c = renderer.getListCellRendererComponent(
                         listBox, comboBox.getSelectedItem(), -1, false, false);
 
-                // Ustawienie odpowiednich kolorów
                 if (c instanceof JLabel) {
                     ((JLabel) c).setForeground(BLUE);
                     ((JLabel) c).setBackground(WHITE);
@@ -53,7 +52,6 @@ public class comboBoxStyler {
             }
         });
 
-        // Stylowanie elementów listy
         comboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

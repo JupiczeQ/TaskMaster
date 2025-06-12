@@ -70,10 +70,6 @@ public class CategoriesPanel extends JPanel {
         public Category getCategoryAt(int rowIndex) {
             return getItemAt(rowIndex);
         }
-
-        public int getTaskCountAt(int rowIndex) {
-            return (rowIndex >= 0 && rowIndex < taskCounts.size()) ? taskCounts.get(rowIndex) : 0;
-        }
     }
 
     public CategoriesPanel(int userID) {
