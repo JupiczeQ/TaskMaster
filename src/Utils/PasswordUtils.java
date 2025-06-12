@@ -1,14 +1,8 @@
 package Utils;
 
-import Database.DatabaseConnection;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Base64;
 
 public class PasswordUtils {
@@ -39,7 +33,7 @@ public class PasswordUtils {
     public static String[] hashPasswordWithSalt(String password) {
         String salt = generateSalt();
         String hash = hashPassword(password, salt);
-        return new String[]{hash, salt}; // [0] = hash, [1] = salt
+        return new String[]{hash, salt};
     }
 
     public static boolean verifyPassword(String password, String hash, String salt) {
