@@ -47,7 +47,7 @@ public class CategoriesPanel extends JPanel {
             taskCounts.clear();
             for (Category category : items) {
                 try {
-                    int count = CategoryDAO.getTaskCountForCategory(category.getId());
+                    int count = CategoryDAO.getTaskCount(category.getId());
                     taskCounts.add(count);
                 } catch (SQLException e) {
                     taskCounts.add(0);
@@ -189,7 +189,7 @@ public class CategoriesPanel extends JPanel {
             filteredCategories = filteredCategories.stream()
                     .filter(category -> {
                         try {
-                            return CategoryDAO.getTaskCountForCategory(category.getId()) > 0;
+                            return CategoryDAO.getTaskCount(category.getId()) > 0;
                         } catch (SQLException e) {
                             return false;
                         }
@@ -199,7 +199,7 @@ public class CategoriesPanel extends JPanel {
             filteredCategories = filteredCategories.stream()
                     .filter(category -> {
                         try {
-                            return CategoryDAO.getTaskCountForCategory(category.getId()) == 0;
+                            return CategoryDAO.getTaskCount(category.getId()) == 0;
                         } catch (SQLException e) {
                             return true;
                         }

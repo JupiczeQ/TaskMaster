@@ -104,7 +104,7 @@ public class CategoryDAO {
         }
     }
 
-    public static int getTaskCountForCategory(int categoryId) throws SQLException {
+    public static int getTaskCount(int categoryId) throws SQLException {
         String sql = "SELECT COUNT(*) FROM tasks WHERE category_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();

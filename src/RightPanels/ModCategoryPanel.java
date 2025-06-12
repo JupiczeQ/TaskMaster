@@ -140,7 +140,7 @@ public class ModCategoryPanel extends JDialog {
         if (!isEditMode || category == null) return;
 
         try {
-            int taskCount = CategoryDAO.getTaskCountForCategory(category.getId());
+            int taskCount = CategoryDAO.getTaskCount(category.getId());
 
             String message = String.format(
                     "Czy na pewno chcesz usunąć kategorię '%s'?",
