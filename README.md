@@ -15,15 +15,16 @@ Pobierz i zainstaluj XAMPP ze strony `https://www.apachefriends.org`. Pakiet zaw
 
 ### 2. Utwórz bazę danych
 - Otwórz przeglądarkę i wejdź na: `http://localhost/phpmyadmin`
-- Kliknij zakładkę **Bazy danych**
-- W polu "Utwórz bazę danych" wpisz: `taskmaster`
-- Kliknij **Utwórz**
+- Kliknij zakładkę **Databases**
+- W polu "Create database" wpisz: `taskmaster`
+- Kliknij **Create**
 
 ### 3. Zaimportuj dane
 - Kliknij na utworzoną bazę `taskmaster` (lista po lewej)
 - Kliknij zakładkę **Import**
 - Kliknij **Wybierz plik** i wskaż plik `taskmaster_db.sql`
-- Przewiń na dół i kliknij **Wykonaj**
+- Odznacz `Enable foreign key checks`
+- Przewiń na dół i kliknij **Create**
 
 ### 4. Utwórz użytkownika
 - Kliknij zakładkę **SQL**
