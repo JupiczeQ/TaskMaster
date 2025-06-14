@@ -40,6 +40,17 @@ Aplikacja powinna teraz połączyć się z bazą danych używając:
 - Hasło: `admin`
 - URL połączenia: `jdbc:mysql://localhost:3306/taskmaster?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC`
 
+### 5. Możliwe błędy
+Przy testowaniu aplikacji na systemie Windows, zauważyłem pojawienie się błędu `No suitable driver found for ..`
+Błąd udało mi się rozwiązać poprzez ponowne załączenie `mysql-connector-java.jar` 
+Aby go naprawić, należy:
+- Otwórz `File` -> `Project Structure`
+- Przejdź do `Libraries`
+- Usuń `mysql-connector-java.jar`
+- Naciśnij znak `+`
+- Dodaj `mysql-connector-java.jar`, który znajduje się w katalogu `/src`
+- Naciśnij `OK` i `Apply`
+
 **WAŻNE**: Parametry w URL są konieczne dla:
 - `useUnicode=true&characterEncoding=UTF-8` - poprawne wyświetlanie polskich znaków
 - `serverTimezone=UTC` - synchronizacja czasu z serwerem
